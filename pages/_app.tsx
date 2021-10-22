@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 import { reactQuery } from '../data'
 import 'tailwindcss/tailwind.css'
+import '../public/main.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
