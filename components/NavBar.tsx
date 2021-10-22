@@ -6,7 +6,7 @@ export default function NavBar() {
   const { mutate: toggleDarMode } = mutateDarkMode()
 
   return (
-    <nav className="navbar h-16 px-20 shadow-xl flex items-center justify-between">
+    <nav className="navbar px-20 mb-2 shadow-lg flex justify-between">
       <h1 className="text-xl font-medium">Where in the world?</h1>
       <button
         className="flex items-center space-x-2"
