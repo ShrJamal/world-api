@@ -1,4 +1,4 @@
-import { QueryClient, QueryCache } from 'react-query'
+import { QueryClient } from 'react-query'
 import Axios from 'axios'
 
 export const reactQuery = new QueryClient()
