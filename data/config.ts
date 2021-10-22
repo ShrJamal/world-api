@@ -1,15 +1,12 @@
 import { useMutation, useQuery } from 'react-query'
 import { reactQuery } from '.'
 
-let isDarkMode: boolean
+let isDarkMode: boolean | undefined
 export function useDarkMode() {
   return useQuery<boolean>('darkMode', () => {
-    if (!isDarkMode) {
+    if (typeof isDarkMode === 'undefined') {
       isDarkMode = localStorage.getItem('darkMode') === 'true'
-      document.documentElement.setAttribute(
-        'data-theme',
-        isDarkMode ? 'dark' : 'light',
-      )
+      setDarkMode(isDarkMode)
     }
     return isDarkMode
   })
@@ -18,11 +15,16 @@ export function useDarkMode() {
 export function mutateDarkMode() {
   return useMutation(async () => {
     isDarkMode = !isDarkMode
-    localStorage.setItem('darkMode', String(isDarkMode))
-    document.documentElement.setAttribute(
-      'data-theme',
-      isDarkMode ? 'dark' : 'light',
-    )
+    setDarkMode(isDarkMode)
     reactQuery.invalidateQueries(['darkMode'])
   })
+}
+
+function setDarkMode(isDarkMode: boolean) {
+  document.documentElement.setAttribute(
+    'data-theme',
+    isDarkMode ? 'dark' : 'light',
+  )
+  if (isDarkMode) document.documentElement.classList.add('dark')
+  else document.documentElement.classList.remove('dark')
 }
