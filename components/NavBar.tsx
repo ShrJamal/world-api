@@ -1,8 +1,8 @@
 import React from 'react'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
-import { mutateDarkMode, useDarkMode } from '../data/config'
-export default function NavBar() {
-  const { data: isDarkMode } = useDarkMode()
+import { mutateDarkMode } from '../data/config'
+
+export default function NavBar({ isDarkMode }: { isDarkMode: boolean }) {
   const { mutate: toggleDarMode } = mutateDarkMode()
 
   return (
