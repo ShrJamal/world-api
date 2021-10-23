@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 import { axiosInstance, reactQuery } from '.'
-import { Country } from '../@types/country'
+import { CountryType } from '../@types'
 
-let allCountries: Array<Country> | undefined
+let allCountries: Array<CountryType> | undefined
 let region = 'All'
 let query = ''
 
@@ -11,10 +11,10 @@ export function useCountries() {
     'countries',
     async () => {
       if (typeof allCountries === 'undefined') {
-        const { data } = await axiosInstance.get<Country[]>('/all')
+        const { data } = await axiosInstance.get<CountryType[]>('/all')
         allCountries = data
       }
-      let result = Array<Country>()
+      let result = Array<CountryType>()
       if (region === 'All') {
         result = allCountries
       } else {

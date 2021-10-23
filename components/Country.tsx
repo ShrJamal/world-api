@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { Country } from '../@types/country'
+import { CountryType } from '../@types'
 
 type Props = {
-  c: Country
+  c: CountryType
 }
 
 export default function CountryItem({ c }: Props) {
