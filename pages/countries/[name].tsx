@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { InferGetServerSidePropsType, GetServerSidePropsContext } from 'next'
 import React from 'react'
 import { axiosInstance } from '../../data'
 import { CountryDetailsType } from '../../@types'
@@ -8,11 +8,9 @@ import { FaArrowLeft } from 'react-icons/fa'
 import CountryDetails from '../../components/CountryDetails'
 import Link from 'next/link'
 
-type Props = {
-  country: CountryDetailsType | undefined
-}
-
-export default function CountryPage({ country }: Props) {
+export default function CountryPage({
+  country,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { name } = useRouter().query
   return (
     <Layout>
@@ -31,10 +29,8 @@ export default function CountryPage({ country }: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const { name } = query
-  console.log(name)
-
   let { data } = await axiosInstance.get<CountryDetailsType[]>('/name/' + name)
 
   return {

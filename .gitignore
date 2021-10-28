@@ -16,6 +16,8 @@ out/
 # debug
 npm-debug.log*
 package-lock.json
+.yarn
+yarn.lock
 yarn-debug.log*
 yarn-error.log*
 pnpm-lock.yaml

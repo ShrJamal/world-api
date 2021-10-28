@@ -14,7 +14,7 @@ export default class AppDocument extends Document {
 
   render() {
     return (
-      <Html className="bg-base-200">
+      <Html>
         <Head />
         <body>
           <Main />
