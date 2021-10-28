@@ -1,15 +1,12 @@
 import React from 'react'
-import { CountryType } from '../@types'
+import { reactQuery } from '../data'
 import CountryItem from '../components/Country'
 import SearchBar from '../components/SearchBar'
-import { useCountries } from '../data/countries'
+import { fetchCountries, useCountries } from '../data/countries'
 import Layout from '../layouts/default'
+import { dehydrate } from 'react-query'
 
-type Props = {
-  countries: CountryType[]
-}
-
-export default function Home({ countries }: Props) {
+export default function Home() {
   const { data } = useCountries()
   return (
     <Layout>
@@ -23,4 +20,13 @@ export default function Home({ countries }: Props) {
       </div>
     </Layout>
   )
+}
+
+export async function getStaticSideProps() {
+  await reactQuery.prefetchQuery('countries', () => fetchCountries())
+  return {
+    props: {
+      dehydratedState: dehydrate(reactQuery),
+    },
+  }
 }
