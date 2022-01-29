@@ -3,14 +3,13 @@ import dynamic from 'next/dynamic'
 import { QueryClientProvider, Hydrate } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-import { reactQuery } from '../data'
-import 'tailwindcss/tailwind.css'
-import '../public/main.css'
+import { reactQuery } from '~/hooks'
+import '~/styles/main.css'
 import 'nprogress/nprogress.css'
 
 const TopProgressBar = dynamic(
   () => {
-    return import('../components/TopProgressBar')
+    return import('~/components/TopProgressBar')
   },
   { ssr: false },
 )

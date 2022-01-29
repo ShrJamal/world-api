@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { axiosInstance, reactQuery } from '.'
-import { CountryType } from '../@types'
+import type { CountryDetailsType, CountryType } from '~/@types'
 
 let allCountries: Array<CountryType> | undefined
 let region = 'All'
@@ -23,24 +23,31 @@ export async function fetchCountries() {
         v.name.toLowerCase().includes(query.toLowerCase()),
       ) ?? []
   }
-  console.log('Countries', result.length, query, region)
   return result
 }
 
+export async function fetchCountry(name: string) {
+  let { data } = await axiosInstance.get<CountryDetailsType[]>('/name/' + name)
+  return data?.length ? data[0] : undefined
+}
+
 export function useCountries() {
-  return useQuery('countries', () => fetchCountries(), {
+  return useQuery('countries', fetchCountries, {
+    staleTime: 1000, // * 60 * 5,
+  })
+}
+export function useCountry(name: string) {
+  return useQuery(['country', name], () => fetchCountry(name), {
     staleTime: 1000, // * 60 * 5,
   })
 }
 
 export function updateSearch(q: string) {
-  console.log('updateSearch', q)
   query = q
   reactQuery.invalidateQueries(['countries'])
 }
 
 export function updateRegion(_reg: string) {
-  console.log('updateRegion', _reg)
   region = _reg
   reactQuery.invalidateQueries(['countries'])
 }

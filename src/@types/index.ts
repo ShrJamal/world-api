@@ -10,14 +10,12 @@ export type CountryType = {
 export type CountryDetailsType = {
   name: string
   nativeName: string
-  flag: string
   capital: string
+  flag: string
   region: string
+  subregion: string
   population: number
-  callingCodes: string[]
-  subRegion: string
-  topLevelDomain: string
-  currencies: string[]
-  languages: string[]
-  borderCountries: string[]
+  topLevelDomain: string[]
+  currencies: Array<{ name: string; code: string }>
+  languages: Array<{ name: string; iso639_1: string }>
 }

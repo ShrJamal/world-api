@@ -1,9 +1,9 @@
 import React from 'react'
-import { reactQuery } from '../data'
-import CountryItem from '../components/Country'
-import SearchBar from '../components/SearchBar'
-import { fetchCountries, useCountries } from '../data/countries'
-import Layout from '../layouts/default'
+import { reactQuery } from '~/hooks'
+import CountryItem from '~/components/Country'
+import SearchBar from '~/components/SearchBar'
+import { fetchCountries, useCountries } from '~/hooks/countries'
+import Layout from '~/layouts/default'
 import { dehydrate } from 'react-query'
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 }
 
 export async function getStaticSideProps() {
-  await reactQuery.prefetchQuery('countries', () => fetchCountries())
+  await reactQuery.prefetchQuery('countries', fetchCountries)
   return {
     props: {
       dehydratedState: dehydrate(reactQuery),

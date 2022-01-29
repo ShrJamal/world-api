@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
 .vscode/
+.idea/
 .pnp
 .pnp.js
 *.pem
@@ -21,7 +22,7 @@ yarn.lock
 yarn-debug.log*
 yarn-error.log*
 pnpm-lock.yaml
-pnpm-debug.log*
+.pnpm-debug.log*
 
 # local env files
 .env
@@ -33,4 +34,3 @@ pnpm-debug.log*
 
 # vercel
 .vercel
-
