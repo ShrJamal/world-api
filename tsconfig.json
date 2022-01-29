@@ -1,23 +1,48 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "module": "ESNext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
     "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
     "incremental": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "checkJs": true,
+    "allowJs": true,
+    "strict": true,
+    "importHelpers": true,
+    "noEmit": true,
     "jsx": "preserve",
+    "baseUrl": ".",
     "paths": {
-      "~/": ["./*"]
+      "~/*": [
+        "./src/*"
+      ],
+      "public/*": [
+        "./public/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".git"]
+  "include": [
+    "next-env.d.ts",
+    "./src"
+  ],
+  "exclude": [
+    "node_modules",
+    ".git"
+  ]
 }
